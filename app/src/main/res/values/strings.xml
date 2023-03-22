@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Facebook Pam2</string>
+    <string name="home">Home</string>
+    <string name="reels">tv</string>
+    <string name="notification">tv</string>
+    <string name="menu">tv</string>
+    <string name="store">marketplace</string>
+    <string name="News">news</string>
+    <string name="Quoi_de_neuf">Hey quoi neuf ?</string>
+    <string name="live">video</string>
+    <string name="Live">Live</string>
+</resources>
