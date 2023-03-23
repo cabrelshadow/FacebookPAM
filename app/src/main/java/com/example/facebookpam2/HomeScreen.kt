@@ -22,19 +22,46 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.SemanticsProperties.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.facebookpam2.ui.theme.ButtonGray
 import java.io.FileDescriptor
 import java.security.Key
 
-@Preview
+
 @Composable
-fun HomeScreen(){
+fun HomeScreen(
+    navigateToSignin:() ->Unit,
+){
+
+    val viewModel= viewModel<HomeScreenViewModel>( )
+    val state by viewModel.state.collectAsState()
+    when(state){
+        is HomeScreenState.Loaded -> HomeScreenContents()
+         HomeScreenState.Loading ->LoadingScreen()
+        HomeScreenState.SignInRequired-> LaunchedEffect(Unit ){
+            navigateToSignin()
+        }
+    }
+}
+@Composable
+fun LoadingScreen() {
+    Box(Modifier
+        .fillMaxSize()
+        .background(MaterialTheme.colors.surface),
+        contentAlignment = Alignment.Center) {
+        CircularProgressIndicator()
+    }
+}
+@Composable
+private fun HomeScreenContents(){
     Box(Modifier
         .background(MaterialTheme.colors.background)
         .fillMaxSize()){
@@ -47,7 +74,7 @@ fun HomeScreen(){
             }
             item {
                 StatusUPdateBar(
-                   avatarUrl ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsyhc52ffNteD1GbD9FoOca9_pLGzXok1JOg&usqp=CAU",
+                    avatarUrl ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsyhc52ffNteD1GbD9FoOca9_pLGzXok1JOg&usqp=CAU",
                     onTextChange ={
 
                     },
@@ -58,7 +85,9 @@ fun HomeScreen(){
 
 
     }
+
 }
+
 @Composable
 private fun TopAppBar(){
     Surface {
@@ -204,16 +233,70 @@ fun StatusUPdateBar(
             )
         }
             Divider(Modifier.fillMaxWidth())
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                  TextButton(onClick = { /*TODO*/ }) {
-                      Row{
-                          Icon(Icons.Rounded.VideoCall,contentDescription = stringResource(com.example.facebookpam2.R.string.live))
-                          Spacer(Modifier.width(8.dp))
-                          Text(stringResource(com.example.facebookpam2.R.string.Live))
-                      }
-                      
-                  }
+            Row{
+                StatusAction(
+                    Icons.Rounded.VideoCall,
+                    stringResource(com.example.facebookpam2.R.string.live),
+                    modifier = Modifier.weight(1f)
+                )
+                VerticalDivider(Modifier.height(48.dp))
+                StatusAction(
+                    Icons.Rounded.PhotoAlbum,
+                    stringResource(com.example.facebookpam2.R.string.photo),
+                    modifier = Modifier.weight(1f)
+                )
+                VerticalDivider(Modifier.height(48.dp))
+                StatusAction(
+                    Icons.Rounded.ChatBubble,
+                    stringResource(com.example.facebookpam2.R.string.discus),
+                    modifier = Modifier.weight(1f)
+                )
+
             }
+
+
     }
+    }
+}
+@Composable
+
+fun VerticalDivider(
+    modifier: Modifier = Modifier,
+    color: Color = MaterialTheme.colors.onSurface.copy(alpha = 0.12f),
+    thickness: Dp = 1.dp,
+    topIndent: Dp = 0.dp,
+) {
+    val indentMod = if (topIndent.value != 0f) {
+        Modifier.padding(top = topIndent)
+    } else {
+        Modifier
+    }
+    val targetThickness = if (thickness == Dp.Hairline) {
+        (1f / LocalDensity.current.density).dp
+    } else {
+        thickness
+    }
+    // TODO see why this does not work without specifying height()
+    Box(modifier
+        .then(indentMod)
+        .fillMaxHeight()
+        .width(targetThickness)
+        .background(color = color))
+}
+
+@Composable
+private fun StatusAction(
+    icon: ImageVector,
+    text: String,
+    modifier: Modifier = Modifier,
+) {
+    TextButton(modifier = modifier,
+        onClick = { },
+        colors = ButtonDefaults.textButtonColors(contentColor = MaterialTheme.colors.onSurface)) {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Icon(icon, contentDescription = text)
+            Spacer(Modifier.width(8.dp))
+            Text(text)
+        }
     }
 }

@@ -9,4 +9,6 @@
     <string name="Quoi_de_neuf">Hey quoi neuf ?</string>
     <string name="live">video</string>
     <string name="Live">Live</string>
+    <string name="photo">photos</string>
+    <string name="discus">chatdiscus</string>
 </resources>

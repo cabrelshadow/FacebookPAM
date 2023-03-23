@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "996579171837",
+    "project_id": "facebookpam-72a71",
+    "storage_bucket": "facebookpam-72a71.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:996579171837:android:6ef51306a68469608e4d94",
+        "android_client_info": {
+          "package_name": "com.example.facebookpam2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "996579171837-88ke3lbmbmf15jpdbqhuvr8upjb3momb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.facebookpam2",
+            "certificate_hash": "80f7a54b59843870faa1e727a7864625a443407c"
+          }
+        },
+        {
+          "client_id": "996579171837-hq6e26dkocoeq0t7torj0thg1ala2r57.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByiD3LbQ5fLL48pjjcb-xP80nRFYFsw_8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "996579171837-hq6e26dkocoeq0t7torj0thg1ala2r57.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
