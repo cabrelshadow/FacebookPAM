@@ -27,9 +27,30 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 TransparentSystemBars()
                 val navController= rememberNavController()
+                val homeRoute="home"
+                val siginRoute="signin"
                 NavHost(navController , startDestination = "home" ){
                     composable("home"){
-                        HomeScreen()
+                        HomeScreen(
+                            navigateToSignin = {
+                                navController.navigate(siginRoute){
+                                    popUpTo(homeRoute){
+                                        inclusive=true
+                                    }
+                                }
+                            }
+                        )
+                    }
+                    composable( siginRoute) {
+                        SignInScreen(
+                            navigateToHome = {
+                                navController.navigate(homeRoute) {
+                                    popUpTo( siginRoute) {
+                                        inclusive = true
+                                    }
+                                }
+                            }
+                        )
                     }
                 }
             }

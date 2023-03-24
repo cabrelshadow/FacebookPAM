@@ -9,4 +9,15 @@
     <string name="Quoi_de_neuf">Hey quoi neuf ?</string>
     <string name="live">video</string>
     <string name="Live">Live</string>
+    <string name="photo">photos</string>
+    <string name="discus">chatdiscus</string>
+
+
+    <string name="facebook_app_id">236471838948224</string>
+    <string name="fb_login_protocol_scheme">fb236471838948224</string>
+    <string name="facebook_client_token">c9ca9ae6e57d440c79306ff1b9ea39ca</string>
+    <string name="try_again">retry</string>
+    <string name="working">it_is_working</string>
+
+
 </resources>
